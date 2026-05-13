@@ -1,18 +1,686 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Studio Blank</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        :root {
+            --ink: #1a1714;
+            --paper: #f4f0e8;
+            --accent: #c8441a;
+            --muted: #8a8278;
+            --border: #d8d2c6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            cursor: none;
+        }
+
+        /* peker*/
+        .peker {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+        }
+
+        .peker.big {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: 2px solid var(--accent);
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            z-index: 100;
+            background-color: var(--muted);
+
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /*hero*/
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-txt {
+            padding-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60%;
+            gap: 20px;
+        }
+
+        .hero-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            max-width: 60%;
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            padding: 0.9rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: background 0.2s, gap 0.2s;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            gap: 20px;
+
+        }
+
+        .btn-arrow {
+            font-size: 1.1rem;
+        }
+
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--paper);
+            border-radius: 50%;
+        }
+
+        #dotGrid {
+            display: none;
+        }
+
+        /* Marquee */
+        .marquee-wrap {
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            background: var(--accent);
+            padding: 0.9rem 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            animation: marquee 18s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--paper);
+            padding: 0 2.5rem;
+            border-right: 1px solid rgba(244, 240, 232, 0.3);
+            opacity: 0.9;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Work grid */
+        .section {
+            padding: 7rem 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .section-num {
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+        }
+
+        .work-card {
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem;
+            transition: background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .work-card:hover {
+            background: white;
+        }
+
+        .work-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .card-num {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-body {
+            font-size: 0.875rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .card-tag {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* About split */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-left {
+            padding: 7rem 4rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .about-right {
+            padding: 7rem 4rem;
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .about-right h2 {
+            color: var(--paper);
+        }
+
+        .about-text {
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: var(--muted);
+            max-width: 420px;
+        }
+
+        .about-right .about-text {
+            color: rgba(244, 240, 232, 0.55);
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3.5rem;
+        }
+
+        .stat-val {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 0.4rem;
+        }
+
+        /* Accordion */
+        .faq {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.75rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            cursor: none;
+            text-align: left;
+            color: var(--ink);
+            transition: color 0.2s;
+        }
+
+        .faq-q:hover {
+            color: var(--accent);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease, color 0.2s;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+        }
+
+        .faq-a-inner {
+            padding: 0 4rem 2rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            color: var(--ink);
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Fade in on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hei</h1>
 
-    <script src="Index-script.js"></script>
+    <div class="peker" id="peker-id"></div>
+
+    <nav>
+        <a href="#" class="logo">Studio Blank</a>
+        <ul class="nav-links">
+            <li><a href="#work">Arbeid</a></li>
+            <li><a href="#about">Om oss</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-txt">
+            <p class="hero-tag">Oslo — Designstudio</p>
+            <h1 id="heroh1">Vi former<br><em>ideer</em> til<br>virkelighet</h1>
+            <p class="hero-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vi bygger merkevarer, digitale
+                produkter og opplevelser som setter varige spor.</p>
+            <a href="#work" class="btn">Se vårt arbeid <span class="btn-arrow">→</span></a>
+        </div>
+
+
+        <div id="dotGrid"></div>
+
+
+
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-wrap">
+        <div class="marquee-track" id="marquee"></div>
+    </div>
+
+    <!-- Work -->
+    <section class="section" id="work">
+        <div class="section-header reveal">
+            <h2>Utvalgte prosjekter</h2>
+            <span class="section-num">02 / Arbeid</span>
+        </div>
+        <div class="work-grid">
+            <div class="work-card reveal">
+                <p class="card-num">001</p>
+                <h3 class="card-title">Merkevareutvikling</h3>
+                <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula felis in
+                    libero venenatis, a gravida nisi pretium.</p>
+                <span class="card-tag">Identitet</span>
+            </div>
+            <div class="work-card reveal">
+                <p class="card-num">002</p>
+                <h3 class="card-title">Digital opplevelse</h3>
+                <p class="card-body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                    doloremque laudantium, totam rem aperiam.</p>
+                <span class="card-tag">UX / UI</span>
+            </div>
+            <div class="work-card reveal">
+                <p class="card-num">003</p>
+                <h3 class="card-title">Bevegelig innhold</h3>
+                <p class="card-body">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
+                    quia consequuntur magni dolores.</p>
+                <span class="card-tag">Motion</span>
+            </div>
+            <div class="work-card reveal">
+                <p class="card-num">004</p>
+                <h3 class="card-title">Strategisk rådgivning</h3>
+                <p class="card-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                    praesentium voluptatum deleniti atque.</p>
+                <span class="card-tag">Strategi</span>
+            </div>
+            <div class="work-card reveal">
+                <p class="card-num">005</p>
+                <h3 class="card-title">Typografisk design</h3>
+                <p class="card-body">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+                    minus id quod maxime placeat facere.</p>
+                <span class="card-tag">Type</span>
+            </div>
+            <div class="work-card reveal">
+                <p class="card-num">006</p>
+                <h3 class="card-title">Pakkedesign</h3>
+                <p class="card-body">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
+                    eveniet ut et voluptates repudiandae sint.</p>
+                <span class="card-tag">Print</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-left">
+            <span class="section-num">03 / Om oss</span>
+            <h2 class="reveal" style="margin-top:1.5rem">Et studio bygget på nysgjerrighet</h2>
+            <p class="about-text reveal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="stat-row reveal">
+                <div>
+                    <div class="stat-val">12+</div>
+                    <div class="stat-label">År i bransjen</div>
+                </div>
+                <div>
+                    <div class="stat-val">84</div>
+                    <div class="stat-label">Prosjekter</div>
+                </div>
+                <div>
+                    <div class="stat-val">6</div>
+                    <div class="stat-label">Priser</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-right">
+            <span class="section-num" style="color:rgba(244,240,232,0.35)">Vår metode</span>
+            <h2 class="reveal" style="margin-top:1.5rem">Vi lytter<br>før vi <em style="color:var(--accent)">tegner</em>
+            </h2>
+            <p class="about-text reveal">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.</p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div style="padding:4rem 4rem 0; display:flex; justify-content:space-between; align-items:baseline;">
+            <h2 class="reveal">Vanlige spørsmål</h2>
+            <span class="section-num">04 / FAQ</span>
+        </div>
+        <div class="faq-item" style="margin-top:2rem">
+            <button class="faq-q">Hva slags prosjekter tar dere på? <span class="faq-icon">+</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vi jobber primært med
+                    merkevarer, digitale produkter og kommunikasjonsdesign for ambisiøse aktører i alle bransjer.</div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q">Hvor lang tid tar et typisk prosjekt? <span class="faq-icon">+</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem. Et prosjekt
+                    varierer fra 4 uker for mindre oppdrag til 6 måneder for større merkevare- eller produktutviklinger.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q">Jobber dere med kunder utenfor Norge? <span class="faq-icon">+</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Nemo enim ipsam voluptatem quia voluptas sit aspernatur. Ja, vi har erfaring
+                    med internasjonale kunder og jobber gjerne på tvers av landegrenser – primært på engelsk.</div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q">Hva er prosessen for å komme i gang? <span class="faq-icon">+</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">At vero eos et accusamus et iusto odio dignissimos. Vi starter alltid med et
+                    uformelt innledende møte, deretter en briefingsrunde, og legger frem et tilbud basert på omfang og
+                    behov.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <span class="footer-logo">Studio Blank</span>
+        <span class="footer-copy">© 2026 — Oslo, Norge</span>
+    </footer>
+
+    <script>
+        const peker = document.getElementById('peker-id');
+        document.addEventListener('mousemove', e => {
+            peker.style.left = e.clientX + 'px';
+            peker.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, .work-card').forEach(el => {
+            el.addEventListener('mouseenter', () => peker.classList.add('big'));
+            el.addEventListener('mouseleave', () => peker.classList.remove('big'));
+        });
+
+        // Dot grid
+        const grid = document.getElementById('dotGrid');
+        for (let i = 0; i < 144; i++) {
+            const d = document.createElement('div');
+            d.className = 'dot';
+            grid.appendChild(d);
+        }
+
+        // Marquee
+        const items = ['Merkeidentitet', 'Digitalt design', 'Art direction', 'Motion graphics', 'Typografi', 'Strategi', 'Pakkedesign', 'Editorial'];
+        const track = document.getElementById('marquee');
+        [...items, ...items].forEach(t => {
+            const s = document.createElement('span');
+            s.className = 'marquee-item';
+            s.textContent = t;
+            track.appendChild(s);
+        });
+
+        // Scroll reveal
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), i * 80);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
 </body>
 
 </html>
