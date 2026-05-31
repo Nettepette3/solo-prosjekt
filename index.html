@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Blank</title>
+    <title>Quentin Tarantino</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
@@ -23,6 +23,18 @@
             --accent: #c8441a;
             --muted: #8a8278;
             --border: #d8d2c6;
+            --card-hover: #ffffff;
+            --nav-bg: #8a8278;
+        }
+
+        [data-theme="dark"] {
+            --ink: #f4f0e8;
+            --paper: #0f0d0b;
+            --accent: #e05a2b;
+            --muted: #6b6560;
+            --border: #2a2520;
+            --card-hover: #1a1714;
+            --nav-bg: #1a1614;
         }
 
         html {
@@ -36,9 +48,9 @@
             font-size: 16px;
             line-height: 1.7;
             cursor: none;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
-        /* peker*/
         .peker {
             position: fixed;
             width: 10px;
@@ -48,7 +60,7 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+            transition: width 0.2s ease, height 0.2s ease;
         }
 
         .peker.big {
@@ -58,7 +70,6 @@
             border: 2px solid var(--accent);
         }
 
-        /* Nav */
         nav {
             position: fixed;
             top: 0;
@@ -66,202 +77,202 @@
             right: 0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             padding: 20px 40px;
             z-index: 100;
-            background-color: var(--muted);
-
-        }
-
-        .logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.4rem;
-            letter-spacing: -0.02em;
-            text-decoration: none;
-            color: var(--ink);
+            background-color: var(--nav-bg);
+            transition: background-color 0.4s ease;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            justify-content: space-evenly;
             list-style: none;
+            align-items: center;
+            width: 80%;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--ink);
-            font-size: 0.85rem;
+            font-size: 14px;
             font-weight: 500;
-            letter-spacing: 0.06em;
+            letter-spacing: 1px;
             text-transform: uppercase;
             opacity: 0.6;
-            transition: opacity 0.2s;
+            transition: opacity 0.2s, color 0.4s;
         }
 
         .nav-links a:hover {
             opacity: 1;
         }
 
-        /*hero*/
+        .theme-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--ink);
+            transition: border-color 0.2s, background 0.2s, color 0.4s;
+            white-space: nowrap;
+        }
+
+        .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .theme-btn .icon {
+            font-size: 14px;
+            line-height: 1;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
+            flex-direction: column;
             justify-content: center;
             border-bottom: 1px solid var(--border);
+            transition: border-color 0.4s;
+        }
+
+        #txtbilde {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            padding: 0 64px;
+        }
+
+        #tarantino {
+            max-width: 20%;
+            margin-top: 100px;
         }
 
         .hero-txt {
             padding-top: 40px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-width: 60%;
+            align-items: flex-start;
+            width: 50%;
             gap: 20px;
         }
 
         .hero-tag {
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
+            font-size: 12px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--accent);
             font-weight: 500;
-            margin-bottom: 1.5rem;
+            margin-bottom: 24px;
         }
-
 
         h1 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-size: 88px;
             line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 2rem;
+            letter-spacing: -3px;
+            margin-bottom: 32px;
         }
 
-        h1 em {
+        h1 .italic {
             font-style: italic;
             color: var(--accent);
         }
 
         .hero-desc {
-            max-width: 60%;
             color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 3rem;
+            font-size: 15px;
+            margin-bottom: 48px;
+            max-width: 480px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
             background: var(--ink);
             color: var(--paper);
             text-decoration: none;
-            padding: 0.9rem 2rem;
-            font-size: 0.85rem;
+            padding: 14px 32px;
+            font-size: 14px;
             font-weight: 500;
-            letter-spacing: 0.04em;
-            transition: background 0.2s, gap 0.2s;
+            letter-spacing: 1px;
+            transition: background 0.2s, gap 0.2s, color 0.4s;
             width: fit-content;
+            margin-top: 16px;
+            margin-bottom: 48px;
         }
 
         .btn:hover {
             background: var(--accent);
             gap: 20px;
-
         }
 
         .btn-arrow {
-            font-size: 1.1rem;
+            font-size: 18px;
         }
 
-
-        .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--paper);
-            border-radius: 50%;
-        }
-
-        #dotGrid {
-            display: none;
-        }
-
-        /* Marquee */
-        .marquee-wrap {
-            border-bottom: 1px solid var(--border);
-            overflow: hidden;
-            background: var(--accent);
-            padding: 0.9rem 0;
-        }
-
-        .marquee-track {
-            display: flex;
-            gap: 0;
-            animation: marquee 18s linear infinite;
-            white-space: nowrap;
-        }
-
-        .marquee-item {
-            font-family: 'DM Serif Display', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--paper);
-            padding: 0 2.5rem;
-            border-right: 1px solid rgba(244, 240, 232, 0.3);
-            opacity: 0.9;
-        }
-
-        @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Work grid */
         .section {
-            padding: 7rem 4rem;
+            padding: 112px 64px;
         }
 
         .section-header {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: 4rem;
+            margin-bottom: 64px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
+            padding-bottom: 24px;
+            transition: border-color 0.4s;
         }
 
         h2 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            letter-spacing: -0.02em;
+            font-size: 45px;
+            letter-spacing: -1px;
             line-height: 1.1;
         }
 
         .section-num {
-            font-size: 0.75rem;
+            font-size: 12px;
             color: var(--muted);
-            letter-spacing: 0.1em;
+            letter-spacing: 2px;
+            transition: color 0.4s;
         }
 
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            border-top: 1px solid var(--border);
-            border-left: 1px solid var(--border);
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 139px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+            transition: background 0.4s;
         }
 
         .work-card {
-            border-right: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 140px 1fr;
             border-bottom: 1px solid var(--border);
-            padding: 2.5rem;
-            transition: background 0.3s;
+            transition: background 0.3s, border-color 0.4s;
             position: relative;
             overflow: hidden;
         }
@@ -269,80 +280,125 @@
         .work-card::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
+            bottom: 0;
+            width: 3px;
             background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.35s ease;
         }
 
         .work-card:hover {
-            background: white;
+            background: var(--card-hover);
         }
 
         .work-card:hover::after {
-            transform: scaleX(1);
+            transform: scaleY(1);
         }
 
-        .card-num {
-            font-size: 0.7rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
+        .card-year-col {
+            padding: 40px 32px 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .card-year-col::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 48px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--border);
+            border: 2px solid var(--paper);
+            transition: background 0.3s, border-color 0.4s;
+        }
+
+        .work-card:hover .card-year-col::after {
+            background: var(--accent);
+        }
+
+        .work-img {
+            height: 500px;
+            width: 100%;
+            display: none;
+            padding: 10px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 40px 40px 40px 48px;
+            border-left: 1px solid var(--border);
+            transition: border-color 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-year {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: var(--accent);
+            letter-spacing: -1px;
+            line-height: 1;
         }
 
         .card-title {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.4rem;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.75rem;
+            font-size: 22px;
+            letter-spacing: 0px;
+            margin-bottom: 12px;
         }
 
         .card-body {
-            font-size: 0.875rem;
+            font-size: 14px;
             color: var(--muted);
             line-height: 1.65;
         }
 
         .card-tag {
             display: inline-block;
-            margin-top: 1.5rem;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
+            margin-top: 24px;
+            font-size: 11px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--accent);
             font-weight: 500;
         }
 
-        /* About split */
         .about {
             display: grid;
             grid-template-columns: 1fr 1fr;
             border-top: 1px solid var(--border);
+            transition: border-color 0.4s;
         }
 
         .about-left {
-            padding: 7rem 4rem;
+            padding: 112px 64px;
             border-right: 1px solid var(--border);
+            transition: border-color 0.4s;
         }
 
         .about-right {
-            padding: 7rem 4rem;
+            padding: 112px 64px;
             background: var(--ink);
             color: var(--paper);
+            transition: background 0.4s, color 0.4s;
         }
 
         .about-right h2 {
             color: var(--paper);
+            transition: color 0.4s;
         }
 
         .about-text {
-            margin-top: 2rem;
-            font-size: 0.95rem;
+            margin-top: 32px;
+            font-size: 15px;
             color: var(--muted);
             max-width: 420px;
         }
@@ -351,48 +407,70 @@
             color: rgba(244, 240, 232, 0.55);
         }
 
+        [data-theme="dark"] .about-right {
+            background: #f4f0e8;
+            color: #1a1714;
+        }
+
+        [data-theme="dark"] .about-right h2 {
+            color: #1a1714;
+        }
+
+        [data-theme="dark"] .about-right .about-text {
+            color: rgba(26, 23, 20, 0.55);
+        }
+
+        [data-theme="dark"] .about-right .section-num {
+            color: rgba(26, 23, 20, 0.35);
+        }
+
+        [data-theme="dark"] .about-right span[style] {
+            color: #e05a2b !important;
+        }
+
         .stat-row {
             display: flex;
-            gap: 3rem;
-            margin-top: 3.5rem;
+            gap: 48px;
+            margin-top: 56px;
         }
 
         .stat-val {
             font-family: 'DM Serif Display', serif;
-            font-size: 3rem;
-            letter-spacing: -0.03em;
+            font-size: 48px;
+            letter-spacing: -2px;
             line-height: 1;
             color: var(--accent);
         }
 
         .stat-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
+            font-size: 12px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--muted);
-            margin-top: 0.4rem;
+            margin-top: 6px;
         }
 
-        /* Accordion */
         .faq {
             border-top: 1px solid var(--border);
+            transition: border-color 0.4s;
         }
 
         .faq-item {
             border-bottom: 1px solid var(--border);
             overflow: hidden;
+            transition: border-color 0.4s;
         }
 
         .faq-q {
             width: 100%;
             background: none;
             border: none;
-            padding: 1.75rem 4rem;
+            padding: 28px 64px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-family: 'DM Serif Display', serif;
-            font-size: 1.15rem;
+            font-size: 18px;
             cursor: none;
             text-align: left;
             color: var(--ink);
@@ -404,7 +482,7 @@
         }
 
         .faq-icon {
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: 300;
             transition: transform 0.3s ease, color 0.2s;
             color: var(--muted);
@@ -427,42 +505,173 @@
         }
 
         .faq-a-inner {
-            padding: 0 4rem 2rem;
-            font-size: 0.9rem;
+            padding: 0 64px 32px;
+            font-size: 14px;
             color: var(--muted);
             max-width: 640px;
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid var(--border);
-            padding: 3rem 4rem;
+            padding: 48px 64px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: border-color 0.4s;
         }
 
         .footer-logo {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.2rem;
+            font-size: 19px;
             color: var(--ink);
+            transition: color 0.4s;
         }
 
         .footer-copy {
-            font-size: 0.8rem;
+            font-size: 13px;
             color: var(--muted);
+            transition: color 0.4s;
         }
 
-        /* Fade in on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
+        @media (max-width: 900px) {
+            body {
+                cursor: auto;
+            }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: none;
+            .peker {
+                display: none;
+            }
+
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                gap: 16px;
+                width: 100%;
+            }
+
+            .nav-links li:not(:last-child) {
+                display: none;
+            }
+
+            #txtbilde {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 24px;
+                gap: 32px;
+            }
+
+            #tarantino {
+                display: none;
+            }
+
+            .hero-txt {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            h1 {
+                font-size: 52px;
+            }
+
+            .hero-desc {
+                max-width: 100%;
+            }
+
+            .btn {
+                margin-bottom: 32px;
+            }
+
+            .section {
+                padding: 64px 24px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 40px;
+            }
+
+            h2 {
+                font-size: 32px;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .work-card {
+                grid-template-columns: 1fr;
+            }
+
+            .card-year-col {
+                padding: 24px 24px 0;
+                align-items: flex-start;
+            }
+
+            .card-year-col::after {
+                display: none;
+            }
+
+            .card-content {
+                padding: 12px 24px 32px;
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .work-img {
+                height: 260px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-left {
+                padding: 64px 24px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .about-right {
+                padding: 64px 24px;
+            }
+
+            .about-text {
+                max-width: 100%;
+            }
+
+            .stat-row {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .stat-val {
+                font-size: 36px;
+            }
+
+            .faq-q {
+                padding: 20px 24px;
+                font-size: 16px;
+            }
+
+            .faq-a-inner {
+                padding: 0 24px 24px;
+            }
+
+            footer {
+                padding: 32px 24px;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .faq>div:first-child {
+                padding: 40px 24px 0 !important;
+            }
         }
     </style>
 </head>
@@ -472,164 +681,196 @@
     <div class="peker" id="peker-id"></div>
 
     <nav>
-        <a href="#" class="logo">Studio Blank</a>
         <ul class="nav-links">
-            <li><a href="#work">Arbeid</a></li>
-            <li><a href="#about">Om oss</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#filmer">Filmer</a></li>
+            <li><a href="#about">Om ham</a></li>
+            <li><a href="#faq">Q/A</a></li>
+            <li>
+                <button class="theme-btn" id="themeBtn" aria-label="Bytt tema">
+                    <span class="icon" id="themeIcon">☽</span>
+                    <span id="themeLabel">Mørk</span>
+                </button>
+            </li>
         </ul>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
-        <div class="hero-txt">
-            <p class="hero-tag">Oslo — Designstudio</p>
-            <h1 id="heroh1">Vi former<br><em>ideer</em> til<br>virkelighet</h1>
-            <p class="hero-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vi bygger merkevarer, digitale
-                produkter og opplevelser som setter varige spor.</p>
-            <a href="#work" class="btn">Se vårt arbeid <span class="btn-arrow">→</span></a>
+        <div id="txtbilde">
+            <div class="hero-txt">
+                <p class="hero-tag">Hollywood — Filmskaper</p>
+                <h1>Quentin<br><span class="italic">Tarantino</span></h1>
+                <p class="hero-desc">Quentin Tarantino er en av Hollywoods mest ikoniske og kontroversielle regissører,
+                    kjent for sin unike stilmiks av vold, sort humor, popkultur-referanser og ikke-lineære fortellinger.
+                </p>
+            </div>
+            <img src="bilder/Quentin-Tarantino-2020.webp" alt="Quentin Tarantino" id="tarantino">
         </div>
-
-
-        <div id="dotGrid"></div>
-
-
-
+        <a href="#filmer" class="btn">Se filmene <span class="btn-arrow">→</span></a>
     </section>
 
-    <!-- Marquee -->
-    <div class="marquee-wrap">
-        <div class="marquee-track" id="marquee"></div>
-    </div>
-
-    <!-- Work -->
-    <section class="section" id="work">
-        <div class="section-header reveal">
-            <h2>Utvalgte prosjekter</h2>
-            <span class="section-num">02 / Arbeid</span>
+    <section class="section" id="filmer">
+        <div class="section-header">
+            <h2>Seks mesterverk</h2>
+            <span class="section-num">Filmografi</span>
         </div>
-        <div class="work-grid">
-            <div class="work-card reveal">
-                <p class="card-num">001</p>
-                <h3 class="card-title">Merkevareutvikling</h3>
-                <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula felis in
-                    libero venenatis, a gravida nisi pretium.</p>
-                <span class="card-tag">Identitet</span>
+        <div class="timeline">
+            <div class="work-card">
+                <div class="card-year-col">
+                    <span class="card-year">1992</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Reservoir Dogs</h3>
+                    <p class="card-body">Tarantinos debutfilm. Et diamantran går galt, og en gruppe anonyme kriminelle
+                        forsøker å avdekke hvem blant dem som er politispion — fortalt nesten utelukkende i et lager.
+                    </p>
+                    <span class="card-tag">Krim / Noir</span>
+                    <img src="bilder/reservoir-dogs-4kuhd-viavision-tarantino-2.jpg" alt="" class="work-img">
+                </div>
             </div>
-            <div class="work-card reveal">
-                <p class="card-num">002</p>
-                <h3 class="card-title">Digital opplevelse</h3>
-                <p class="card-body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                    doloremque laudantium, totam rem aperiam.</p>
-                <span class="card-tag">UX / UI</span>
+            <div class="work-card">
+                <div class="card-year-col">
+                    <span class="card-year">1994</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Pulp Fiction</h3>
+                    <p class="card-body">En sammenvevd fortelling om gangstere, en bokser og en mystisk koffert i Los
+                        Angeles. Vant Gullpalmen i Cannes og revolusjonerte moderne filmspråk.</p>
+                    <span class="card-tag">Krim / Thriller</span>
+                    <img src="bilder/Pulp-Fiction.mkv_snapshot_01.53.26_2022.12.07_21.05.13-scaled.jpg" alt=""
+                        class="work-img">
+                </div>
             </div>
-            <div class="work-card reveal">
-                <p class="card-num">003</p>
-                <h3 class="card-title">Bevegelig innhold</h3>
-                <p class="card-body">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
-                    quia consequuntur magni dolores.</p>
-                <span class="card-tag">Motion</span>
+            <div class="work-card">
+                <div class="card-year-col">
+                    <span class="card-year">2003</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Kill Bill</h3>
+                    <p class="card-body">En bruden (Uma Thurman) overlever et massemord på bryllupsdagen og setter i
+                        gang en knallhard hevnferd. En hyllest til kung fu-filmer, spaghetti-western og anime. Utgitt i
+                        to deler — Vol. 1 (2003) og Vol. 2 (2004).</p>
+                    <span class="card-tag">Action / Hevn</span>
+                    <img src="bilder/images.jpg" alt="" class="work-img">
+                </div>
             </div>
-            <div class="work-card reveal">
-                <p class="card-num">004</p>
-                <h3 class="card-title">Strategisk rådgivning</h3>
-                <p class="card-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                    praesentium voluptatum deleniti atque.</p>
-                <span class="card-tag">Strategi</span>
+            <div class="work-card">
+                <div class="card-year-col">
+                    <span class="card-year">2009</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Inglourious Basterds</h3>
+                    <p class="card-body">Alternativ krigshistorie der en gruppe jødiske soldater og en fransk-jødisk
+                        kinoinnehaver planlegger å ta livet av Nazi-Tysklands ledelse under en filmpremiere i Paris.</p>
+                    <span class="card-tag">Krig / Alternativ historie</span>
+                    <img src="bilder/thumb-1920-1124676.jpg" alt="" class="work-img">
+                </div>
             </div>
-            <div class="work-card reveal">
-                <p class="card-num">005</p>
-                <h3 class="card-title">Typografisk design</h3>
-                <p class="card-body">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-                    minus id quod maxime placeat facere.</p>
-                <span class="card-tag">Type</span>
+            <div class="work-card">
+                <div class="card-year-col">
+                    <span class="card-year">2012</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Django Unchained</h3>
+                    <p class="card-body">En frigitt slave (Jamie Foxx) samarbeider med en tysk dusørjeger (Christoph
+                        Waltz) for å befri sin kone fra en brutal plantasjeeier i det førkrigstids amerikanske sør.</p>
+                    <span class="card-tag">Western / Drama</span>
+                    <img src="bilder/1468133148-dcdc91c47cce1f34b38ed0641f5e10f5ffb8e667_NO.webp" alt=""
+                        class="work-img">
+                </div>
             </div>
-            <div class="work-card reveal">
-                <p class="card-num">006</p>
-                <h3 class="card-title">Pakkedesign</h3>
-                <p class="card-body">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
-                    eveniet ut et voluptates repudiandae sint.</p>
-                <span class="card-tag">Print</span>
+            <div class="work-card">
+                <div class="card-year-col">
+                    <span class="card-year">2019</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Once Upon a Time in Hollywood</h3>
+                    <p class="card-body">En kjærlighetserklæring til 1969-tidens Hollywood, fortalt gjennom en aldrende
+                        TV-stjerne (Leonardo DiCaprio) og hans stuntmann (Brad Pitt) — med Sharon Tate-drapet som
+                        dystert bakteppe.</p>
+                    <span class="card-tag">Drama / Nostalgi</span>
+                    <img src="bilder/28box-superJumbo.jpg" alt="" class="work-img">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About -->
     <section class="about" id="about">
         <div class="about-left">
-            <span class="section-num">03 / Om oss</span>
-            <h2 class="reveal" style="margin-top:1.5rem">Et studio bygget på nysgjerrighet</h2>
-            <p class="about-text reveal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div class="stat-row reveal">
+            <span class="section-num">Om Tarantino</span>
+            <h2 style="margin-top:24px">Fra videobutikk til filmlegende</h2>
+            <p class="about-text">Quentin Tarantino ble født 27. mars 1963 i Knoxville, Tennessee. Han fikk ingen
+                formell filmutdanning — i stedet lærte han seg håndverket bak disken på Video Archives i Manhattan
+                Beach, California, der han så tusenvis av filmer fra alle sjangre og epoker. Hans debutfilm Reservoir
+                Dogs ble sensasjon på Sundance i 1992 og skapte en helt ny stemme i amerikansk kino.</p>
+            <div class="stat-row">
                 <div>
-                    <div class="stat-val">12+</div>
-                    <div class="stat-label">År i bransjen</div>
+                    <div class="stat-val">10</div>
+                    <div class="stat-label">Spillefilmer</div>
                 </div>
                 <div>
-                    <div class="stat-val">84</div>
-                    <div class="stat-label">Prosjekter</div>
+                    <div class="stat-val">2</div>
+                    <div class="stat-label">Oscar for manus</div>
                 </div>
                 <div>
-                    <div class="stat-val">6</div>
-                    <div class="stat-label">Priser</div>
+                    <div class="stat-val">1</div>
+                    <div class="stat-label">Gullpalme</div>
                 </div>
             </div>
         </div>
         <div class="about-right">
-            <span class="section-num" style="color:rgba(244,240,232,0.35)">Vår metode</span>
-            <h2 class="reveal" style="margin-top:1.5rem">Vi lytter<br>før vi <em style="color:var(--accent)">tegner</em>
-            </h2>
-            <p class="about-text reveal">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+            <span class="section-num" style="color:rgba(244,240,232,0.35)">Stil og signatur</span>
+            <h2 style="margin-top:24px">Dialogen er<br><span
+                    style="font-style:italic;color:var(--accent)">våpenet</span></h2>
+            <p class="about-text">Tarantino er kjent for sin signaturstil: lange, knivskarpe dialoger der
+                hverdagslige samtaler møter eksistensiell spenning, ikke-lineær struktur som deler historier i kapitler,
+                og en eklektisk bruk av musikk fra helt uventede sjangre. Han setter popkultur og brutal vold side om
+                side — og gjør det til kunst.</p>
         </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="faq">
-        <div style="padding:4rem 4rem 0; display:flex; justify-content:space-between; align-items:baseline;">
-            <h2 class="reveal">Vanlige spørsmål</h2>
-            <span class="section-num">04 / FAQ</span>
+        <div style="padding:64px 64px 0;display:flex;justify-content:space-between;align-items:baseline">
+            <h2>Spørsmål og svar</h2>
+            <span class="section-num">Q&A</span>
         </div>
-        <div class="faq-item" style="margin-top:2rem">
-            <button class="faq-q">Hva slags prosjekter tar dere på? <span class="faq-icon">+</span></button>
+        <div class="faq-item" style="margin-top:32px">
+            <button class="faq-q">Hva er Tarantinos beste film? <span class="faq-icon">+</span></button>
             <div class="faq-a">
-                <div class="faq-a-inner">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vi jobber primært med
-                    merkevarer, digitale produkter og kommunikasjonsdesign for ambisiøse aktører i alle bransjer.</div>
+                <div class="faq-a-inner">Det er selvsagt en smakssak, men Pulp Fiction fra 1994 regnes av mange
+                    kritikere og filmfans som hans absolutte mesterverk. Filmen vant Gullpalmen i Cannes og er jevnlig
+                    på lister over tidenes beste filmer.</div>
             </div>
         </div>
         <div class="faq-item">
-            <button class="faq-q">Hvor lang tid tar et typisk prosjekt? <span class="faq-icon">+</span></button>
+            <button class="faq-q">Har Tarantino annonsert sin siste film? <span class="faq-icon">+</span></button>
             <div class="faq-a">
-                <div class="faq-a-inner">Sed ut perspiciatis unde omnis iste natus error sit voluptatem. Et prosjekt
-                    varierer fra 4 uker for mindre oppdrag til 6 måneder for større merkevare- eller produktutviklinger.
-                </div>
+                <div class="faq-a-inner">Tarantino har lenge sagt at han vil avslutte karrieren etter ti spillefilmer.
+                    Once Upon a Time in Hollywood (2019) er nummer ni. Han har snakket om et prosjekt kalt «The Movie
+                    Critic», men status er per 2026 fortsatt uklar.</div>
             </div>
         </div>
         <div class="faq-item">
-            <button class="faq-q">Jobber dere med kunder utenfor Norge? <span class="faq-icon">+</span></button>
+            <button class="faq-q">Hvorfor er det alltid så mye vold i filmene hans? <span
+                    class="faq-icon">+</span></button>
             <div class="faq-a">
-                <div class="faq-a-inner">Nemo enim ipsam voluptatem quia voluptas sit aspernatur. Ja, vi har erfaring
-                    med internasjonale kunder og jobber gjerne på tvers av landegrenser – primært på engelsk.</div>
+                <div class="faq-a-inner">Tarantino bruker vold bevisst som stilistisk virkemiddel, ikke kun for
+                    sjokkeffekt. Han ser på det som en del av filmhistoriens tradisjon — fra spaghetti-western til kung
+                    fu — og bruker det gjerne for å skape svart humor eller understreke moralske konsekvenser.</div>
             </div>
         </div>
         <div class="faq-item">
-            <button class="faq-q">Hva er prosessen for å komme i gang? <span class="faq-icon">+</span></button>
+            <button class="faq-q">Spiller Tarantino selv i filmene sine? <span class="faq-icon">+</span></button>
             <div class="faq-a">
-                <div class="faq-a-inner">At vero eos et accusamus et iusto odio dignissimos. Vi starter alltid med et
-                    uformelt innledende møte, deretter en briefingsrunde, og legger frem et tilbud basert på omfang og
-                    behov.</div>
+                <div class="faq-a-inner">Ja, Tarantino har en tradisjon for å dukke opp i egne filmer i mindre roller. I
+                    Pulp Fiction spiller han Jimmy, i Reservoir Dogs er han Mr. Brown, og i Inglourious Basterds dukker
+                    han opp i en liten scene som soldat.</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
-        <span class="footer-logo">Studio Blank</span>
-        <span class="footer-copy">© 2026 — Oslo, Norge</span>
+        <span class="footer-logo">Lorem, ipsum dolor.</span>
+        <span class="footer-copy">Lorem ipsum dolor sit.</span>
     </footer>
 
     <script>
@@ -643,35 +884,6 @@
             el.addEventListener('mouseleave', () => peker.classList.remove('big'));
         });
 
-        // Dot grid
-        const grid = document.getElementById('dotGrid');
-        for (let i = 0; i < 144; i++) {
-            const d = document.createElement('div');
-            d.className = 'dot';
-            grid.appendChild(d);
-        }
-
-        // Marquee
-        const items = ['Merkeidentitet', 'Digitalt design', 'Art direction', 'Motion graphics', 'Typografi', 'Strategi', 'Pakkedesign', 'Editorial'];
-        const track = document.getElementById('marquee');
-        [...items, ...items].forEach(t => {
-            const s = document.createElement('span');
-            s.className = 'marquee-item';
-            s.textContent = t;
-            track.appendChild(s);
-        });
-
-        // Scroll reveal
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach((e, i) => {
-                if (e.isIntersecting) {
-                    setTimeout(() => e.target.classList.add('visible'), i * 80);
-                }
-            });
-        }, { threshold: 0.12 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-        // FAQ accordion
         document.querySelectorAll('.faq-q').forEach(btn => {
             btn.addEventListener('click', () => {
                 const item = btn.closest('.faq-item');
@@ -680,6 +892,42 @@
                 if (!isOpen) item.classList.add('open');
             });
         });
+
+        document.querySelectorAll('.work-card').forEach(film => {
+            film.addEventListener('click', () => {
+                const img = film.querySelector('.work-img');
+                if (img.style.display === 'block') {
+                    img.style.display = 'none';
+                } else {
+                    document.querySelectorAll('.work-img').forEach(i => i.style.display = 'none');
+                    img.style.display = 'block';
+                }
+            });
+        });
+
+        const html = document.documentElement;
+        const themeBtn = document.getElementById('themeBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeLabel = document.getElementById('themeLabel');
+
+        const saved = localStorage.getItem('theme') || 'light';
+        setTheme(saved);
+
+        themeBtn.addEventListener('click', () => {
+            setTheme(html.dataset.theme === 'light' ? 'dark' : 'light');
+        });
+
+        function setTheme(t) {
+            html.dataset.theme = t;
+            localStorage.setItem('theme', t);
+            if (t === 'dark') {
+                themeIcon.textContent = '☀';
+                themeLabel.textContent = 'Lys';
+            } else {
+                themeIcon.textContent = '☾';
+                themeLabel.textContent = 'Mørk';
+            }
+        }
     </script>
 </body>
 
