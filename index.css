@@ -296,7 +296,7 @@ h2 {
 .card-year-col::after {
     content: '';
     position: absolute;
-    right: -5px;
+    right: -6.5px;
     top: 50px;
     width: 10px;
     height: 10px;
@@ -411,9 +411,7 @@ h2 {
     color: rgba(26, 23, 20, 0.35);
 }
 
-[data-theme="mørk"] .about-right span[style] {
-    color: #e05a2b !important;
-}
+
 
 .stat-row {
     display: flex;
@@ -656,7 +654,4 @@ footer {
         text-align: center;
     }
 
-    .qa>div:first-child {
-        padding: 40px 24px 0 !important;
-    }
 }
