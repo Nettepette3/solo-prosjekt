@@ -22,8 +22,13 @@ document.querySelectorAll('.film-card').forEach(film => {
         const img = film.querySelector('.film-img');
         if (img.style.display === 'block') {
             img.style.display = 'none';
+
         } else {
-            document.querySelectorAll('.film-img').forEach(i => i.style.display = 'none');
+            document.querySelectorAll('.film-img').forEach(i => {
+                i.style.display = 'none'
+            });
+
+            
             img.style.display = 'block';
         }
     });

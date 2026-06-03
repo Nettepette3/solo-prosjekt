@@ -14,16 +14,18 @@
     --border: #d8d2c6;
     --card-hover: #ffffff;
     --nav-bg: #8a8278;
+    --btn-clr: #c8441a;
 }
 
 [data-theme="mørk"] {
     --ink: #f4f0e8;
     --paper: #0f0d0b;
-    --accent: #e05a2b;
+    --accent: #51c81a;
     --muted: #6b6560;
     --border: #2a2520;
     --card-hover: #1a1714;
     --nav-bg: #1a1614;
+    --btn-clr: #51c81a;
 }
 
 
@@ -64,7 +66,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 40px;
+    padding: 15px 40px;
     z-index: 100;
     background-color: var(--nav-bg);
     transition: background-color 0.4s ease;
@@ -209,6 +211,11 @@ h1 .italic {
     font-size: 18px;
 }
 
+#arkivbtn {
+    align-self: center;
+    justify-self: center;
+}
+
 .section {
     padding: 112px 64px;
 }
@@ -316,8 +323,10 @@ h2 {
     display: none;
     padding: 10px;
     object-fit: cover;
-    transition: 1s ease-in;
+    filter: opacity(0);
+    transform: opacity 1s;
 }
+
 
 .card-content {
     padding: 40px 40px 40px 48px;
